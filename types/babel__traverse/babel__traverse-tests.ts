@@ -1,13 +1,15 @@
-import traverse, { Visitor } from "@babel/traverse";
+import traverse, { Visitor, NodePath } from "@babel/traverse";
 import * as t from "@babel/types";
 
 // Examples from: https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md
 const MyVisitor: Visitor = {
     Identifier: {
-        enter() {
+        enter(path) {
+            const x: NodePath<t.Identifier> = path;
             console.log("Entered!");
         },
-        exit() {
+        exit(path) {
+            const x: NodePath<t.Identifier> = path;
             console.log("Exited!");
         }
     }
@@ -108,4 +110,46 @@ const BindingKindTest: Visitor = {
         // $ExpectError
         kind === 'anythingElse';
     },
+};
+
+interface SomeVisitorState { someState: string; }
+
+const VisitorStateTest: Visitor<SomeVisitorState> = {
+    enter(path, state) {
+        // $ExpectType SomeVisitorState
+        state;
+        // $ExpectType SomeVisitorState
+        this;
+    },
+    exit(path, state) {
+        // $ExpectType SomeVisitorState
+        state;
+        // $ExpectType SomeVisitorState
+        this;
+    },
+    Identifier(path, state) {
+        // $ExpectType SomeVisitorState
+        state;
+        // $ExpectType SomeVisitorState
+        this;
+    },
+    FunctionDeclaration: {
+        enter(path, state) {
+            // $ExpectType SomeVisitorState
+            state;
+            // $ExpectType SomeVisitorState
+            this;
+        },
+        exit(path, state) {
+            // $ExpectType SomeVisitorState
+            state;
+            // $ExpectType SomeVisitorState
+            this;
+        }
+    }
+};
+
+const VisitorAliasTest: Visitor = {
+    Function() {},
+    Expression() {},
 };
