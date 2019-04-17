@@ -3,6 +3,7 @@
 // Definitions by: Karol Janyst <https://github.com/LKay>
 //                 Epskampie <https://github.com/Epskampie>
 //                 Masafumi Koba <https://github.com/ybiquitous>
+//                 Law Smith <https://github.com/lawsumisu>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.8
 

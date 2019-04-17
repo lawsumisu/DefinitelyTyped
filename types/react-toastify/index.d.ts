@@ -1,6 +1,7 @@
 // Type definitions for react-toastify 4.0
 // Project: https://github.com/fkhadra/react-toastify#readme
 // Definitions by: icopp <https://github.com/icopp>
+//                 Law Smith <https://github.com/lawsumisu>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.8
 
@@ -136,7 +137,7 @@ export interface ToastOptions extends ToastAndToastContainerOptions {
     /**
      * String or React Element, only available when calling update.
      */
-    render?: string | React.ReactElement;
+    render?: string | React.ReactElement<any>;
 }
 
 export interface Toast {
